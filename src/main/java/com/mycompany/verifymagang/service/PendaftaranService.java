@@ -168,6 +168,16 @@ public class PendaftaranService {
     }
 
     /**
+     * Mengambil pendaftaran yang sudah disetujui tetapi belum ditempatkan.
+     *
+     * @return daftar pendaftaran siap ditempatkan
+     * @throws SQLException jika query gagal
+     */
+    public List<PendaftaranMagang> daftarSiapDitempatkan() throws SQLException {
+        return pendaftaranDAO.findDisetujuiBelumDitempatkan();
+    }
+
+    /**
      * Mengambil satu pendaftaran.
      *
      * @param pendaftaranId id pendaftaran

@@ -5,12 +5,10 @@ import com.mycompany.verifymagang.LoginFrame;
 import javax.swing.SwingUtilities;
 
 /**
- * Jembatan antara package {@code app} dan form login yang Anda desain di
- * NetBeans GUI Builder.
+ * Jembatan antara package {@code app} dan form login.
  *
- * <p>Dengan memusatkan pembuatan form di satu tempat, lokasi/penamaan form
- * login bisa berubah tanpa menyentuh {@code App}. Jika Anda memindahkan
- * {@code LoginFrame} ke package {@code view}, cukup ubah import di kelas ini.</p>
+ * <p>Memusatkan pembuatan form login di satu tempat sehingga {@code App} tidak
+ * bergantung langsung pada kelas tampilan mana pun.</p>
  */
 public final class LoginFrameHolder {
 

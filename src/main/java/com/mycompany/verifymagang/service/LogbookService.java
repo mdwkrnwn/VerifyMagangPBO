@@ -178,6 +178,16 @@ public class LogbookService {
     }
 
     /**
+     * Mengambil seluruh logbook dari semua mahasiswa (halaman admin).
+     *
+     * @return daftar seluruh logbook
+     * @throws SQLException jika query gagal
+     */
+    public List<LogbookHarian> daftarSemua() throws SQLException {
+        return logbookDAO.findAllDetail();
+    }
+
+    /**
      * Menghitung jumlah logbook terverifikasi pada satu penempatan.
      *
      * @param penempatanId id penempatan

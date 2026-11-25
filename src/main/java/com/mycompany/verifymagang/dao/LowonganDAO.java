@@ -124,14 +124,14 @@ public class LowonganDAO {
      * @throws SQLException jika query gagal
      */
     public Optional<LowonganMagang> findById(int id) throws SQLException {
-        String sql = "SELECT " + COLUMNS + " FROM lowongan WHERE id = ?";
+        String sql = SELECT_WITH_MITRA + "WHERE l.id = ?";
 
         try (Connection conn = DatabaseConfig.getConnection();
                 PreparedStatement ps = conn.prepareStatement(sql)) {
 
             ps.setInt(1, id);
             try (ResultSet rs = ps.executeQuery()) {
-                return rs.next() ? Optional.of(mapRow(rs)) : Optional.empty();
+                return rs.next() ? Optional.of(mapRowWithMitra(rs)) : Optional.empty();
             }
         }
     }

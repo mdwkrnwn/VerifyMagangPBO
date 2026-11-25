@@ -156,9 +156,7 @@ public class PenempatanDAO {
      * @throws SQLException jika query gagal
      */
     public Optional<PenempatanMagang> findAktifByMahasiswa(int mahasiswaId) throws SQLException {
-        String sql = "SELECT pen.id, pen.pendaftaran_id, pen.dosen_id, pen.mitra_id, "
-                + "pen.tanggal_mulai, pen.tanggal_selesai, pen.status "
-                + "FROM penempatan pen JOIN pendaftaran p ON p.id = pen.pendaftaran_id "
+        String sql = SELECT_DETAIL
                 + "WHERE p.mahasiswa_id = ? AND pen.status = ? "
                 + "ORDER BY pen.tanggal_mulai DESC LIMIT 1";
 
@@ -168,7 +166,7 @@ public class PenempatanDAO {
             ps.setInt(1, mahasiswaId);
             ps.setString(2, PenempatanMagang.STATUS_AKTIF);
             try (ResultSet rs = ps.executeQuery()) {
-                return rs.next() ? Optional.of(mapRow(rs)) : Optional.empty();
+                return rs.next() ? Optional.of(mapRowDetail(rs)) : Optional.empty();
             }
         }
     }

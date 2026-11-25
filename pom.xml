@@ -19,5 +19,12 @@
             <version>9.5.0</version>
             <scope>runtime</scope>
         </dependency>
+
+        <!-- Look and Feel modern untuk Swing -->
+        <dependency>
+            <groupId>com.formdev</groupId>
+            <artifactId>flatlaf</artifactId>
+            <version>3.5.4</version>
+        </dependency>
     </dependencies>
 </project>

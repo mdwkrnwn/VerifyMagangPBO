@@ -208,6 +208,27 @@ public class LogbookDAO {
     }
 
     /**
+     * Mengambil seluruh logbook dari semua mahasiswa (dipakai halaman admin).
+     *
+     * @return daftar seluruh logbook beserta nama mahasiswa
+     * @throws SQLException jika query gagal
+     */
+    public List<LogbookHarian> findAllDetail() throws SQLException {
+        String sql = SELECT_DETAIL + "ORDER BY lb.tanggal DESC, lb.id DESC";
+        List<LogbookHarian> result = new ArrayList<>();
+
+        try (Connection conn = DatabaseConfig.getConnection();
+                PreparedStatement ps = conn.prepareStatement(sql);
+                ResultSet rs = ps.executeQuery()) {
+
+            while (rs.next()) {
+                result.add(mapRowDetail(rs));
+            }
+        }
+        return result;
+    }
+
+    /**
      * Mengambil logbook berdasarkan status verifikasi.
      *
      * @param status status verifikasi

@@ -217,6 +217,33 @@ public class PendaftaranDAO {
     }
 
     /**
+     * Mengambil pendaftaran yang sudah disetujui tetapi belum memiliki
+     * penempatan. Dipakai admin saat membuat penempatan baru.
+     *
+     * @return daftar pendaftaran siap ditempatkan
+     * @throws SQLException jika query gagal
+     */
+    public List<PendaftaranMagang> findDisetujuiBelumDitempatkan() throws SQLException {
+        String sql = SELECT_DETAIL
+                + "LEFT JOIN penempatan pen ON pen.pendaftaran_id = p.id "
+                + "WHERE p.status = ? AND pen.id IS NULL "
+                + "ORDER BY p.tanggal_daftar";
+        List<PendaftaranMagang> result = new ArrayList<>();
+
+        try (Connection conn = DatabaseConfig.getConnection();
+                PreparedStatement ps = conn.prepareStatement(sql)) {
+
+            ps.setString(1, PendaftaranMagang.STATUS_DISETUJUI);
+            try (ResultSet rs = ps.executeQuery()) {
+                while (rs.next()) {
+                    result.add(mapRowDetail(rs));
+                }
+            }
+        }
+        return result;
+    }
+
+    /**
      * Mengubah status pendaftaran beserta catatannya.
      *
      * @param id      id pendaftaran

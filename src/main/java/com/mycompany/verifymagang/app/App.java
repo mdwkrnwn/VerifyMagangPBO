@@ -1,5 +1,6 @@
 package com.mycompany.verifymagang.app;
 
+import com.formdev.flatlaf.FlatLightLaf;
 import com.mycompany.verifymagang.config.DatabaseConfig;
 import com.mycompany.verifymagang.view.LoginFrameHolder;
 
@@ -9,9 +10,8 @@ import javax.swing.UIManager;
 /**
  * Titik masuk aplikasi.
  *
- * <p>Bertanggung jawab menyiapkan Look &amp; Feel, memeriksa koneksi database,
- * lalu membuka form login. Semua tampilan tetap dibuat oleh Anda melalui
- * NetBeans GUI Builder; kelas ini hanya mengorkestrasi.</p>
+ * <p>Bertanggung jawab menyiapkan Look &amp; Feel (FlatLaf Light), memeriksa
+ * koneksi database, lalu membuka form login.</p>
  */
 public final class App {
 
@@ -35,15 +35,22 @@ public final class App {
 
     private static void setupLookAndFeel() {
         try {
-            for (UIManager.LookAndFeelInfo info : UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    UIManager.setLookAndFeel(info.getClassName());
-                    return;
-                }
-            }
-        } catch (ReflectiveOperationException | javax.swing.UnsupportedLookAndFeelException ex) {
-            // Bila Nimbus tidak tersedia, gunakan Look & Feel bawaan sistem.
-            System.err.println("[App] Gagal memasang Nimbus: " + ex.getMessage());
+            FlatLightLaf.setup();
+            UIManager.put("Component.focusWidth", 1);
+            UIManager.put("Component.arc", 8);
+            UIManager.put("Button.arc", 8);
+            UIManager.put("TextComponent.arc", 8);
+            UIManager.put("ScrollBar.width", 10);
+            UIManager.put("ScrollBar.thumbArc", 8);
+            UIManager.put("ScrollBar.trackArc", 8);
+            UIManager.put("Table.showHorizontalLines", true);
+            UIManager.put("Table.showVerticalLines", false);
+            UIManager.put("TableHeader.height", 40);
+            UIManager.put("Table.rowHeight", 40);
+            UIManager.put("TabbedPane.showTabSeparators", true);
+            UIManager.put("defaultFont", new java.awt.Font("Segoe UI", java.awt.Font.PLAIN, 13));
+        } catch (RuntimeException ex) {
+            System.err.println("[App] Gagal memasang FlatLaf: " + ex.getMessage());
         }
     }
 
