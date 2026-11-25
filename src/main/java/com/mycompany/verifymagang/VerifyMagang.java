@@ -4,13 +4,16 @@
 
 package com.mycompany.verifymagang;
 
+import com.mycompany.verifymagang.app.App;
+
 /**
+ * Titik masuk utama aplikasi (dipakai oleh konfigurasi Maven {@code exec.mainClass}).
  *
- * @author User
+ * <p>Seluruh orkestrasi start-up berada di {@link App}.</p>
  */
 public class VerifyMagang {
 
     public static void main(String[] args) {
-        System.out.println("Hello World!");
+        App.main(args);
     }
 }

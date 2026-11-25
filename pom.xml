@@ -10,4 +10,14 @@
         <maven.compiler.release>22</maven.compiler.release>
         <exec.mainClass>com.mycompany.verifymagang.VerifyMagang</exec.mainClass>
     </properties>
+
+    <dependencies>
+        <!-- JDBC driver untuk MySQL / MariaDB -->
+        <dependency>
+            <groupId>com.mysql</groupId>
+            <artifactId>mysql-connector-j</artifactId>
+            <version>9.5.0</version>
+            <scope>runtime</scope>
+        </dependency>
+    </dependencies>
 </project>
